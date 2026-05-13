@@ -1,0 +1,35 @@
+{
+  "test_suite": "ParaBank Registration Tests",
+  "total_cases": 4,
+  "test_cases": {
+    "positive_case": {
+      "name": "User successfully registers with valid credentials",
+      "type": "POSITIVE",
+      "description": "\nTest Case: POSITIVE - Successful Registration\nSteps:\n1. Navigate to https://parabank.parasoft.com/parabank/register.htm\n2. Fill registration form with valid data:\n   - First Name: John\n   - Last Name: Doe\n   - Address: 123 Main Street\n   - City: New York\n   - State: NY\n   - Zip Code: 10001\n   - Phone: 2125551234\n   - SSN: 123456789\n   - Username: johndoe2026\n   - Password: SecurePass@123\n   - Confirm Password: SecurePass@123\n3. Click Register button\nExpected Result: Registration should be successful, user should be redirected to login or dashboard\n            ",
+      "gherkin": "\nFeature: ParaBank User Registration\n  Scenario: User successfully registers with valid credentials\n    Given User navigates to ParaBank registration page\n    When User enters valid personal information:\n      | Field        | Value           |\n      | First Name   | John            |\n      | Last Name    | Doe             |\n      | Address      | 123 Main St     |\n      | City         | New York        |\n      | State        | NY              |\n      | Zip Code     | 10001           |\n      | Phone        | 2125551234      |\n      | SSN          | 123456789       |\n      | Username     | johndoe2026     |\n      | Password     | SecurePass@123  |\n    And User confirms the password matching\n    When User clicks Register button\n    Then Registration should be successful\n    And User should be redirected to login page or dashboard\n            "
+    },
+    "negative_case_1": {
+      "name": "Registration fails with empty required fields",
+      "type": "NEGATIVE",
+      "description": "\nTest Case: NEGATIVE - Empty Required Field (First Name)\nSteps:\n1. Navigate to registration page\n2. Leave First Name field empty\n3. Fill other required fields:\n   - Last Name: Doe\n   - Address: 123 Main Street\n   - City: New York\n   - State: NY\n   - Zip Code: 10001\n   - Phone: 2125551234\n   - SSN: 123456789\n   - Username: testuser1\n   - Password: SecurePass@123\n   - Confirm Password: SecurePass@123\n4. Click Register button\nExpected Result: Registration should fail with error message about required field\n            ",
+      "gherkin": "\nFeature: ParaBank Registration Validation\n  Scenario: Registration fails with empty required fields\n    Given User navigates to ParaBank registration page\n    When User leaves First Name field empty\n    And User fills other required fields\n    And User clicks Register button\n    Then Registration should fail\n    And User should see error message for required First Name field\n    And User should remain on registration page\n            "
+    },
+    "negative_case_2": {
+      "name": "Registration fails with password mismatch",
+      "type": "NEGATIVE",
+      "description": "\nTest Case: NEGATIVE - Password Mismatch\nSteps:\n1. Navigate to registration page\n2. Fill all fields with valid data:\n   - First Name: Jane\n   - Last Name: Smith\n   - Address: 456 Oak Avenue\n   - City: Los Angeles\n   - State: CA\n   - Zip Code: 90001\n   - Phone: 2135551234\n   - SSN: 987654321\n   - Username: janesmith2026\n   - Password: SecurePass@123\n   - Confirm Password: DifferentPass@456  (MISMATCH)\n3. Click Register button\nExpected Result: Registration should fail with password mismatch error\n            ",
+      "gherkin": "\nFeature: ParaBank Registration Validation\n  Scenario: Registration fails with password mismatch\n    Given User navigates to ParaBank registration page\n    When User enters valid personal information\n    And User enters Password as \"SecurePass@123\"\n    And User enters Confirm password as \"DifferentPass@456\"\n    When User clicks Register button\n    Then Registration should fail\n    And User should see password mismatch error message\n    And User should remain on registration page\n            "
+    },
+    "negative_case_3": {
+      "name": "Registration fails with invalid SSN format",
+      "type": "NEGATIVE",
+      "description": "\nTest Case: NEGATIVE - Invalid SSN Format\nSteps:\n1. Navigate to registration page\n2. Fill all fields with valid data EXCEPT SSN:\n   - First Name: Bob\n   - Last Name: Johnson\n   - Address: 789 Pine Road\n   - City: Chicago\n   - State: IL\n   - Zip Code: 60601\n   - Phone: 3125551234\n   - SSN: ABC-DEF-GHIJ (INVALID - contains letters)\n   - Username: bobjohnson2026\n   - Password: SecurePass@123\n   - Confirm Password: SecurePass@123\n3. Click Register button\nExpected Result: Registration should fail with SSN validation error\n            ",
+      "gherkin": "\nFeature: ParaBank Registration Validation\n  Scenario: Registration fails with invalid SSN format\n    Given User navigates to ParaBank registration page\n    When User enters all required information with invalid SSN\n    And User enters invalid SSN format (letters instead of numbers)\n    When User clicks Register button\n    Then Registration should fail\n    And User should see SSN validation error message\n    And User should remain on registration page\n            "
+    }
+  },
+  "execution_time": "2026-05-13T15:57:33.375044",
+  "test_categories": {
+    "positive": 1,
+    "negative": 3
+  }
+}
