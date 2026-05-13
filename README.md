@@ -1,67 +1,78 @@
-# ParaBank Registration Test Automation
+# ParaBank Registration — Test Automation
 
 ## Overview
-This project contains automated test scripts for the ParaBank website registration functionality using Selenium, pytest, and webdriver-manager.
+This repository contains automated tests for the ParaBank registration flow using Selenium and pytest. Tests cover positive and negative scenarios and capture screenshots saved to `test_results/`.
 
-## Test Cases
+## Members
+1. **Christofle Tjhai** — NIM: 2802398914
+2. **Khalisa Amanda Sifa Ghaizani** — NIM: 2802449455
+3. **Clarissa Ken Alison** — NIM: 2802394014
+4. **Joshua Tanusenjaya** — NIM: 2802455621
+5. **Kenrick Willson** — NIM: 2802392002z
 
-### 1. Positive Test Case
-**Test: User successfully registers with valid credentials**
-- Tests successful registration with all valid information
-- Verifies that the user can complete registration flow
-- Expected: Registration should be successful
-
-### 2. Negative Test Case 1
-**Test: Registration fails with empty required fields**
-- Tests registration with empty First Name (required field)
-- Verifies proper error handling for missing required fields
-- Expected: Registration should fail with error message
-
-### 3. Negative Test Case 2
-**Test: Registration fails with mismatched passwords**
-- Tests registration when password and confirm password don't match
-- Verifies password validation
-- Expected: Registration should fail with password mismatch error
-
-### 4. Negative Test Case 3
-**Test: Registration fails with invalid SSN format**
-- Tests registration with invalid SSN format (letters instead of numbers)
-- Verifies SSN format validation
-- Expected: Registration should fail with SSN validation error
+## Contributors & Roles
+- **Christofle Tjhai**: Selenium WebDriver configuration, screenshot capture, and WebDriverManager integration.
+- **Khalisa Amanda Sifa Ghaizani**: pytest configuration, test design, and CI/test run orchestration.
+- **Clarissa Ken Alison**: Test data design, negative/edge-case scenarios, and form validation checks.
+- **Joshua Tanusenjaya**: Test scripting, flow automation, and result verification assertions.
+- **Kenrick Willson**: Test reporting, result artifact collection, and README/documentation updates.
 
 ## Requirements
 - Python 3.7+
-- Selenium 4.15.2
-- pytest 7.4.3
-- webdriver-manager 4.0.1
+- Selenium
+- pytest
+- webdriver-manager
 
-## Installation
-
-1. Clone the repository
-2. Create a virtual environment (optional):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+Install dependencies:
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ## Running Tests
-
-Execute all tests:
+Run all tests:
 ```bash
 pytest test_parabank_registration.py -v -s
 ```
 
-Run a specific test:
+Run a single test:
 ```bash
-pytest test_parabank_registration.py::TestParaBankRegistration::test_positive_case_successful_registration -v
+pytest test_parabank_registration.py::TestParaBankRegistration::test_positive_case_successful_registration -q
 ```
 
-## Test Results
-Screenshots of test results are saved to the `test_results/` directory.
+## Test Cases
+- Positive: successful registration with valid data.
+- Negative: missing required fields (First Name), mismatched passwords, invalid SSN format.
+
+## Test Results (screenshots)
+Screenshots and result artifacts are saved in `test_results/`. Below are the captured images from recent test runs:
+
+Positive case — before submit:
+![Positive before submit](test_results/positive_case_before_submit.png)
+
+Positive case — result:
+![Positive result](test_results/positive_case_result.png)
+
+Negative case 1 — before submit (empty required field):
+![Negative 1 before submit](test_results/negative_case_1_before_submit.png)
+
+Negative case 1 — result (error shown):
+![Negative 1 result](test_results/negative_case_1_result.png)
+
+Negative case 2 — before submit (password mismatch):
+![Negative 2 before submit](test_results/negative_case_2_before_submit.png)
+
+Negative case 2 — result (passwords did not match):
+![Negative 2 result](test_results/negative_case_2_result.png)
+
+Negative case 3 — before submit (invalid SSN):
+![Negative 3 before submit](test_results/negative_case_3_before_submit.png)
+
+Negative case 3 — result (SSN validation error):
+![Negative 3 result](test_results/negative_case_3_result.png)
+
+![alt text](image.png)
 
 ## Project Structure
 ```
@@ -70,27 +81,29 @@ se_automation/
 ├── requirements.txt
 ├── README.md
 └── test_results/
-    ├── positive_case_result.png
-    ├── negative_case_1_result.png
-    ├── negative_case_2_result.png
-    └── negative_case_3_result.png
+   ├── positive_case_before_submit.png
+   ├── positive_case_result.png
+   ├── negative_case_1_before_submit.png
+   ├── negative_case_1_result.png
+   ├── negative_case_2_before_submit.png
+   ├── negative_case_2_result.png
+   ├── negative_case_3_before_submit.png
+   ├── negative_case_3_result.png
+   └── test_cases.json
 ```
 
 ## Test Execution Flow
-
-1. WebDriver setup (Chrome)
-2. Navigate to ParaBank registration page
-3. Fill registration form with test data
-4. Click Register button
-5. Capture screenshot of result
-6. Verify expected behavior
-7. Generate test report
+1. WebDriver setup (Chrome via webdriver-manager).
+2. Navigate to the ParaBank registration page.
+3. Fill registration form with test data.
+4. Click `Register`.
+5. Capture screenshot and save to `test_results/`.
+6. Assert expected behaviour and generate test output.
 
 ## Notes
-- Tests use Chrome WebDriver (automatically managed by webdriver-manager)
-- Screenshots are automatically captured for each test
-- Tests include both positive and negative scenarios
-- All test cases use Gherkin syntax as comments within the test script
+- Chrome WebDriver is managed automatically by `webdriver-manager`.
+- Screenshots are stored in `test_results/` per test.
+- Add new test cases to `test_parabank_registration.py` and update `test_results/test_cases.json`.
 
-## Author
-QA Automation Team
+## Acknowledgements
+This test suite was created and maintained by the QA Automation Team listed above.
